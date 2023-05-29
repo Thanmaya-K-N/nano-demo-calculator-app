@@ -15,15 +15,21 @@ baseRouter.get('/greeting', (req, res) => {
 
 baseRouter.post('/add', (req, res) => {
     const {first,second}=req.body;
+    if( first===null || second ===null )
+    return res.status(400).json({ error:'Missing parameters'});
+
     const result= parseFloat(first)+ parseFloat(second);
-    res.json({ "result": null });
+    res.json({ result});
 });
 
 
 baseRouter.post('/subtract', (req, res) => {
     const {first,second} = req.body;
+    if( first===null || second ===null )
+    return res.status(400).json({error:'Missing parameters'});
+
     const result= parseFloat(first)-parseFloat(second);
-    res.json({ "result": null });
+    res.json({ result });
 });
 
 app.use(baseUrl, baseRouter);
